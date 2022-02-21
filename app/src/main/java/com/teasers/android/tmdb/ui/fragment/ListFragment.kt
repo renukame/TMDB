@@ -75,7 +75,7 @@ class ListFragment : Fragment() {
             )
         }
 
-        mainViewModel.movieLiveData.observe(this, Observer { response ->
+        mainViewModel.movieLiveData.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is ResponseHandler.Success -> {
                     hideProgressBar()

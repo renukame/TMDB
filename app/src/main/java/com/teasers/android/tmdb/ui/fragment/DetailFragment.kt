@@ -62,7 +62,7 @@ class DetailFragment : Fragment() {
         val movieId = args.movieId
 
         mainViewModel.loadMovieDetail(movieId)
-        mainViewModel.movieDetailLiveData.observe(this, Observer { response ->
+        mainViewModel.movieDetailLiveData.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is ResponseHandler.Success -> {
                     hideProgressBar()

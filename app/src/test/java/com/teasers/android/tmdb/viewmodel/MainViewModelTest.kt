@@ -30,44 +30,36 @@ class MainViewModelTest {
 
     @Test
     fun testLoadMovieSuccessWithData() {
-        mainCoroutineRule.runBlockingTest {
-            fakeMovieRepository.isMovieListHasData = true
-            viewModel.loadMovies("en")
-            val value = viewModel.movieLiveData.getOrAwaitValueTest()
-            Assert.assertEquals(value.data?.results?.isNotEmpty(), true)
-        }
+        fakeMovieRepository.isMovieListHasData = true
+        viewModel.loadMovies("en")
+        val value = viewModel.movieLiveData.getOrAwaitValueTest()
+        Assert.assertEquals(value.data?.results?.isNotEmpty(), true)
     }
 
     @Test
     fun testLoadMovieSuccessWithNull() {
-        mainCoroutineRule.runBlockingTest {
-            fakeMovieRepository.isMovieListNull = true
-            viewModel.loadMovies("en")
-            val value = viewModel.movieLiveData.getOrAwaitValueTest()
-            Assert.assertNull(value.data)
-        }
+        fakeMovieRepository.isMovieListNull = true
+        viewModel.loadMovies("en")
+        val value = viewModel.movieLiveData.getOrAwaitValueTest()
+        Assert.assertNull(value.data)
     }
 
     @Test
     fun testLoadMovieResultInError() {
-        mainCoroutineRule.runBlockingTest {
-            fakeMovieRepository.isError = true
-            viewModel.loadMovies("en")
-            val value = viewModel.movieLiveData.getOrAwaitValueTest()
-            Assert.assertNull(value.data)
-        }
-    }
+        fakeMovieRepository.isError = true
+        viewModel.loadMovies("en")
+        val value = viewModel.movieLiveData.getOrAwaitValueTest()
+        Assert.assertNull(value.data)
 
+    }
 
 
     @Test
     fun testLoadMovieDetailSuccessWithData() {
-        mainCoroutineRule.runBlockingTest {
-            fakeMovieRepository.isMovieListHasData = true
-            viewModel.loadMovieDetail(1)
-            val value = viewModel.movieDetailLiveData.getOrAwaitValueTest()
-            Assert.assertNotNull(value.data)
-        }
+        fakeMovieRepository.isMovieListHasData = true
+        viewModel.loadMovieDetail(1)
+        val value = viewModel.movieDetailLiveData.getOrAwaitValueTest()
+        Assert.assertNotNull(value.data)
     }
 
     @Test
@@ -82,11 +74,10 @@ class MainViewModelTest {
 
     @Test
     fun testLoadMovieDetailResultInError() {
-        mainCoroutineRule.runBlockingTest {
-            fakeMovieRepository.isError = true
-            viewModel.loadMovieDetail(1)
-            val value = viewModel.movieDetailLiveData.getOrAwaitValueTest()
-            Assert.assertNull(value.data)
-        }
+        fakeMovieRepository.isError = true
+        viewModel.loadMovieDetail(1)
+        val value = viewModel.movieDetailLiveData.getOrAwaitValueTest()
+        Assert.assertNull(value.data)
+
     }
 }

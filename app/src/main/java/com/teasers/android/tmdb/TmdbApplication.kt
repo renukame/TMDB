@@ -9,7 +9,7 @@ import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 class TmdbApplication : Application(), HasAndroidInjector {
-    lateinit var daggerAppComponent: AppComponent
+    private lateinit var daggerAppComponent: AppComponent
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>

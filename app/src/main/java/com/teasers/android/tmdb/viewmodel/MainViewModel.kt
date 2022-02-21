@@ -8,6 +8,7 @@ import com.teasers.android.tmdb.data.Repository
 import com.teasers.android.tmdb.data.model.MovieDetail
 import com.teasers.android.tmdb.data.model.PaginatedListResponse
 import com.teasers.android.tmdb.util.ResponseHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,7 +33,7 @@ class MainViewModel @Inject constructor(val repository: Repository) : ViewModel(
     fun loadMovies(lang: String) {
         viewModelScope.launch {
             movieMutableLiveData.value = ResponseHandler.Loading()
-            movieMutableLiveData.postValue(handleMoviesResponse(lang))
+            movieMutableLiveData.value = handleMoviesResponse(lang)
         }
     }
 
@@ -62,8 +63,8 @@ class MainViewModel @Inject constructor(val repository: Repository) : ViewModel(
 
     fun loadMovieDetail(id: Int) {
         viewModelScope.launch {
-            movieDetailMutableLiveData.postValue(ResponseHandler.Loading())
-            movieDetailMutableLiveData.postValue(handleMovieDetailResponse(id))
+            movieDetailMutableLiveData.value = ResponseHandler.Loading()
+            movieDetailMutableLiveData.value = handleMovieDetailResponse(id)
 
         }
     }
