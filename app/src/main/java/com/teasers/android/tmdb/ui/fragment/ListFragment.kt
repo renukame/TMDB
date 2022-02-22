@@ -74,7 +74,12 @@ class ListFragment : Fragment() {
                 bundle
             )
         }
+        initObserver()
 
+
+    }
+
+    private fun initObserver(){
         mainViewModel.movieLiveData.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is ResponseHandler.Success -> {
@@ -95,7 +100,6 @@ class ListFragment : Fragment() {
                 }
             }
         })
-
     }
 
     private fun showProgressBar() {

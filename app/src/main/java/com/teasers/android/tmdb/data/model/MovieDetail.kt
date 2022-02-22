@@ -1,6 +1,6 @@
 package com.teasers.android.tmdb.data.model
 
-class MovieDetail(
+data class MovieDetail(
     val adult: Boolean,
     val backdrop_path: String,
     val belongsToCollection: Any,

@@ -62,6 +62,19 @@ class DetailFragment : Fragment() {
         val movieId = args.movieId
 
         mainViewModel.loadMovieDetail(movieId)
+        initObserver()
+
+    }
+
+    private fun showProgressBar() {
+        detailProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        detailProgressBar.visibility = View.INVISIBLE
+    }
+
+    private fun initObserver() {
         mainViewModel.movieDetailLiveData.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is ResponseHandler.Success -> {
@@ -88,15 +101,6 @@ class DetailFragment : Fragment() {
                 }
             }
         })
-
-    }
-
-    private fun showProgressBar() {
-        detailProgressBar.visibility = View.VISIBLE
-    }
-
-    private fun hideProgressBar() {
-        detailProgressBar.visibility = View.INVISIBLE
     }
 
 
