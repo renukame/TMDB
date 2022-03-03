@@ -43,6 +43,14 @@ class MainViewModelTest {
         val value = viewModel.movieLiveData.getOrAwaitValueTest()
         Assert.assertNull(value.data)
     }
+    @Test
+    fun testLoadMoviewithError() {
+        fakeMovieRepository.isError = true
+        runBlockingTest {
+            val result = viewModel.handleMoviesResponse("en")
+            Assert.assertEquals(result.message,"Couldn't reach the server , Please check your internet Connection")
+        }
+    }
 
     @Test
     fun testLoadMovieResultInError() {
